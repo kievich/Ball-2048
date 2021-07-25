@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026ef4e1457f2264aa8ea6cb6b0480d1, type: 3}
+  m_Name: BallsTextures
+  m_EditorClassIdentifier: 
+  material:
+  - {fileID: 2100000, guid: f66b096b39d9ecb408aa1631dbadde68, type: 2}
+  - {fileID: 2100000, guid: a218ed7c4b5e88644b9045cb3299b4c4, type: 2}
+  - {fileID: 2100000, guid: 6f265b735f8801a4fa23d8c58df71c64, type: 2}
+  - {fileID: 2100000, guid: 486140d64e07c9b4f8fed281e718dc29, type: 2}
+  - {fileID: 2100000, guid: b677cf96b2c1f4d46ba3f55e1859e6b0, type: 2}
+  - {fileID: 2100000, guid: 64fd70836b6d57c459a8bdbdc0aa1be2, type: 2}
+  - {fileID: 2100000, guid: af869ad01a963ee4e88defe571d3e737, type: 2}
+  - {fileID: 2100000, guid: 7e0354325e5d5c646b38f3deef42ea50, type: 2}
+  - {fileID: 2100000, guid: 02fe473873c9a4f428b1ecc0fdcc0502, type: 2}
+  - {fileID: 2100000, guid: 97d83bbca00b12b459477798350dbe5a, type: 2}
+  - {fileID: 2100000, guid: 5c23d7cc2b5131e4d990a514f2d4f5c7, type: 2}
