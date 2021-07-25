@@ -52,4 +52,21 @@ public class Trajectory : MonoBehaviour
         _renderer.enabled = visible;
     }
 
+    public void Rotate(float inputValue)
+    {
+        float y = transform.rotation.eulerAngles.y;
+        y += inputValue;
+        if (y > 180)
+            y -= 360;
+
+        y = Mathf.Clamp(y, -_maxEuler, _maxEuler);
+        Debug.Log(y);
+        transform.rotation = Quaternion.Euler(0, y, 0);
+    }
+
+    public void ResetRotation()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+
 }
