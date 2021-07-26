@@ -60,7 +60,6 @@ public class Trajectory : MonoBehaviour
             y -= 360;
 
         y = Mathf.Clamp(y, -_maxEuler, _maxEuler);
-        Debug.Log(y);
         transform.rotation = Quaternion.Euler(0, y, 0);
     }
 

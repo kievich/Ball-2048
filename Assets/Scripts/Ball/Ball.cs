@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
 {
 
     private static int NumberOfBalls = 0;
+    public static List<Ball> balls { get; private set; } = new List<Ball>();
     public int Id { get; private set; }
     public int Value { get; private set; }
 
@@ -30,7 +31,14 @@ public class Ball : MonoBehaviour
         Ball ball = Instantiate(template, position, Quaternion.identity, parent);
         ball.GetComponent<BallTextureSetter>().SetTexture(value);
         ball.Value = value;
+        balls.Add(ball);
         return ball;
+    }
+
+    public static void Destroy(Ball ball)
+    {
+        balls.Remove(ball);
+        Destroy(ball.gameObject);
     }
 
     public void IncreaseValue()
