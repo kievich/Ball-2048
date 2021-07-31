@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class BallUnifier : MonoBehaviour
     private int _maxBallValue;
     private const float gForce = 9.8f;
 
+    public event Action<int> BallUnited;
+
     private void Start()
     {
         _maxBallValue = _balltextures.material.Length - 1;
@@ -21,6 +24,7 @@ public class BallUnifier : MonoBehaviour
     {
         if (sender.Value == crashedBall.Value && sender.Value != _maxBallValue)
         {
+            BallUnited?.Invoke(sender.Value);
             sender.IncreaseValue();
             ApplyUniteBounce(sender);
             Ball.Destroy(crashedBall);

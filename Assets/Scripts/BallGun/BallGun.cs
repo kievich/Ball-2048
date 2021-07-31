@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class BallGun : MonoBehaviour
     private Ball _currentBall;
     public bool IsBallOnSpawnPoint { get; private set; } = false;
 
+    public event Action BallPushed;
 
     private void Start()
     {
@@ -30,6 +32,7 @@ public class BallGun : MonoBehaviour
         IsBallOnSpawnPoint = false;
         _currentBall.GetComponent<Rigidbody>().AddForce(direction * _pushForce);
         _currentBall = null;
+        BallPushed?.Invoke();
         Invoke(nameof(SpawnBall), _spawnDelay);
     }
 

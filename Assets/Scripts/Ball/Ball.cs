@@ -11,6 +11,7 @@ public class Ball : MonoBehaviour
     public static List<Ball> balls { get; private set; } = new List<Ball>();
     public int Id { get; private set; }
     public int Value { get; private set; }
+    public BallStatus Status { get; private set; } = BallStatus.Newbie;
 
     private BallTextureSetter _ballTextureSetter;
 
@@ -39,6 +40,11 @@ public class Ball : MonoBehaviour
     {
         balls.Remove(ball);
         Destroy(ball.gameObject);
+    }
+
+    public void SetOldStatus()
+    {
+        Status = BallStatus.Old;
     }
 
     public void IncreaseValue()
