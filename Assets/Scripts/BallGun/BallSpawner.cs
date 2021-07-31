@@ -10,7 +10,7 @@ public class BallSpawner : MonoBehaviour
 
     public Ball SpawnBall()
     {
-        Ball ball = Ball.Create(_template, _ballCluster, _spawnPoint.position, Random.Range(0, 3));
+        Ball ball = Ball.Create(_template, _ballCluster, _spawnPoint.position, Quaternion.identity, Random.Range(0, 3));
         return ball;
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public static class AppData
 {
@@ -11,6 +12,8 @@ public static class AppData
     private static Dictionary<BoosterType, int> _boosterNumber = new Dictionary<BoosterType, int>();
 
     private static PlayerPrefsSaveSystem _prefsSystem = new PlayerPrefsSaveSystem();
+
+    private static JsonSaveSystem _saveSystem = new JsonSaveSystem();
 
     static AppData()
     {
@@ -24,14 +27,44 @@ public static class AppData
         _boosterNumber.Add(BoosterType.Boomb, _prefsSystem.LoadInt(BoosterType.Boomb.ToString(), _defaulIntValue));
         _boosterNumber.Add(BoosterType.Doubler, _prefsSystem.LoadInt(BoosterType.Doubler.ToString(), _defaulIntValue));
     }
+    public static void Save()
+    {
+        SaveBallPosition();
+        SaveGameData();
+    }
 
-    public static void SaveData()
+    private static void SaveGameData()
     {
         _prefsSystem.SaveInt(nameof(Score), Score);
         _prefsSystem.SaveInt(nameof(MaxScore), MaxScore);
         _prefsSystem.SaveInt(BoosterType.Boomb.ToString(), _boosterNumber[BoosterType.Boomb]);
         _prefsSystem.SaveInt(BoosterType.Doubler.ToString(), _boosterNumber[BoosterType.Doubler]);
     }
+
+    private static void SaveBallPosition()
+    {
+        var ballContainer = new BallContainer();
+        ballContainer.FillUp();
+        _saveSystem.SavePosition(ballContainer);
+    }
+
+    public static BallContainer LoadBallPosition()
+    {
+        return _saveSystem.LoadPosition();
+    }
+    private static void ClearBallPosition()
+    {
+        _saveSystem.ClearPosition();
+    }
+
+    public static void ResetToReload()
+    {
+        ResetScore();
+        SaveGameData();
+        ClearBallPosition();
+    }
+
+
 
     public static void SetScore(int newScore)
     {
@@ -48,7 +81,7 @@ public static class AppData
 
     }
 
-    public static void ResetScore()
+    private static void ResetScore()
     {
         Score = 0;
     }

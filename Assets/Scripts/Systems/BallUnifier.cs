@@ -24,10 +24,10 @@ public class BallUnifier : MonoBehaviour
     {
         if (sender.Value == crashedBall.Value && sender.Value != _maxBallValue)
         {
-            BallUnited?.Invoke(sender.Value);
             sender.IncreaseValue();
             ApplyUniteBounce(sender);
             Ball.Destroy(crashedBall);
+            BallUnited?.Invoke(sender.Value);
         }
 
     }

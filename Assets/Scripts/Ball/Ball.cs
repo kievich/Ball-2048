@@ -19,17 +19,13 @@ public class Ball : MonoBehaviour
     {
         Id = NumberOfBalls;
         NumberOfBalls++;
-    }
-
-    private void Start()
-    {
         _ballTextureSetter = GetComponent<BallTextureSetter>();
 
     }
 
-    public static Ball Create(Ball template, Transform parent, Vector3 position, int value)
+    public static Ball Create(Ball template, Transform parent, Vector3 position, Quaternion quaternion, int value)
     {
-        Ball ball = Instantiate(template, position, Quaternion.identity, parent);
+        Ball ball = Instantiate(template, position, quaternion, parent);
         ball.GetComponent<BallTextureSetter>().SetTexture(value);
         ball.Value = value;
         balls.Add(ball);

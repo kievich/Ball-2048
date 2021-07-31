@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ namespace UI
         private int _maxScore;
 
         private BallUnifier _ballUnifier;
+
+        public event Action ScoreChanged;
 
         private void Start()
         {
@@ -35,6 +38,7 @@ namespace UI
             AppData.SetScore(_score);
             _maxScore = AppData.MaxScore;
             DisplayScore();
+            ScoreChanged?.Invoke();
 
         }
 
