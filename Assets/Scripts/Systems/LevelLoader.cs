@@ -14,7 +14,8 @@ public class LevelLoader : MonoBehaviour
         {
             foreach (var ball in container.BallPositions)
             {
-                Ball.Create(_ballTemplate, _ballCluster, ball.Position, Quaternion.Euler(ball.Rotation), ball.Value);
+                Ball.Create(_ballTemplate, _ballCluster, ball.Position, Quaternion.Euler(ball.Rotation), ball.Value).SetOldStatus();
+
             }
         }
 

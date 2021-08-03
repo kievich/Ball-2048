@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Doubler : MonoBehaviour
+public class Doubler : Booster
 {
-    // Start is called before the first frame update
-    void Start()
+    static public event Action<int> Doubled;
+
+    protected override void onCollisionWithBall(Ball ball)
     {
-        
+        Double(ball);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Double(Ball ball)
     {
-        
+        Doubled?.Invoke(ball.Value);
+        ball.IncreaseValue();
+        Destroy(gameObject);
     }
 }

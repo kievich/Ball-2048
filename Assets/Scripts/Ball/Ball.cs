@@ -38,6 +38,15 @@ public class Ball : MonoBehaviour
         Destroy(ball.gameObject);
     }
 
+    public static void DestroyAll()
+    {
+        while (balls.Count > 0)
+        {
+            Destroy(balls[0]);
+
+        }
+    }
+
     public void SetOldStatus()
     {
         Status = BallStatus.Old;

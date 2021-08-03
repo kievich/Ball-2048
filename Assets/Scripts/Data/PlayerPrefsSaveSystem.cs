@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerPrefsSaveSystem
 {
@@ -21,4 +22,15 @@ public class PlayerPrefsSaveSystem
     {
         PlayerPrefs.SetInt(key, value);
     }
+
+    public void SaveBool(string key, bool value)
+    {
+        PlayerPrefs.SetInt(key, Convert.ToInt32(value));
+    }
+
+    public bool LoadBool(string key, bool defaultValue)
+    {
+        return Convert.ToBoolean(LoadInt(key, Convert.ToInt32(defaultValue)));
+    }
+
 }

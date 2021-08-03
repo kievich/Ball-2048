@@ -5,15 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelReloader : MonoBehaviour
 {
-    private void Start()
-    {
-
-    }
-
-
     public void Reload()
     {
-        AppData.ResetToReload();
+
+        Ball.DestroyAll();
+        AppData.ResetScore();
+        AppData.Save();
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

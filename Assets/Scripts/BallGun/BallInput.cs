@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BallInput : MonoBehaviour
 {
@@ -17,12 +18,12 @@ public class BallInput : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetMouseButtonDown(0) && _ballGun.IsBallOnSpawnPoint)
+        if (Input.GetMouseButtonDown(0) && _ballGun.IsItemOnSpawnPoint && !EventSystem.current.IsPointerOverGameObject())
         {
             _trajectory.SetVisible(true);
         }
 
-        if (Input.GetMouseButton(0) && _ballGun.IsBallOnSpawnPoint)
+        if (Input.GetMouseButton(0) && _ballGun.IsItemOnSpawnPoint && !EventSystem.current.IsPointerOverGameObject())
         {
 
             if (Input.GetAxis("Mouse X") != 0)
@@ -34,7 +35,7 @@ public class BallInput : MonoBehaviour
 
         }
 
-        if (Input.touchCount > 0 && _ballGun.IsBallOnSpawnPoint)
+        if (Input.touchCount > 0 && _ballGun.IsItemOnSpawnPoint)
         {
             Touch touch = Input.touches[0];
             if (touch.phase == TouchPhase.Moved)
@@ -45,9 +46,9 @@ public class BallInput : MonoBehaviour
         }
 
 
-        if (Input.GetMouseButtonUp(0) && _ballGun.IsBallOnSpawnPoint)
+        if (Input.GetMouseButtonUp(0) && _ballGun.IsItemOnSpawnPoint && !EventSystem.current.IsPointerOverGameObject())
         {
-            _ballGun.PushBall(_trajectory.GetDirection());
+            _ballGun.PushItem(_trajectory.GetDirection());
             _trajectory.ResetRotation();
         }
 

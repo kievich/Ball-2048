@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Booster : MonoBehaviour
+public abstract class Booster : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    protected abstract void onCollisionWithBall(Ball ball);
+
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.TryGetComponent<Ball>(out Ball ball))
+            onCollisionWithBall(ball);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }
+
