@@ -38,4 +38,10 @@ public class SettingSwitch : MonoBehaviour
         else
             _rawImage.texture = _disableImage;
     }
+
+    private void OnDestroy()
+    {
+        GetComponent<Button>().onClick.RemoveListener(onClick);
+
+    }
 }

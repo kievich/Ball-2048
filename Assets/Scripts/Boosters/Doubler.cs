@@ -14,8 +14,8 @@ public class Doubler : Booster
 
     private void Double(Ball ball)
     {
-        Doubled?.Invoke(ball.Value);
         ball.IncreaseValue();
+        Doubled?.Invoke(ball.Value);
         Destroy(gameObject);
     }
 }

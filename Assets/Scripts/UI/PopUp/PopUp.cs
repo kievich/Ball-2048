@@ -14,9 +14,12 @@ public class PopUp : MonoBehaviour
     [SerializeField] private Vector3 _elementsMinSize;
     [SerializeField] private bool _enableOnStart;
 
+    private LevelPause _levelPause;
 
     private void Start()
     {
+        _levelPause = FindObjectOfType<LevelPause>();
+
         SetStartPosition();
         Disable();
 
@@ -54,6 +57,7 @@ public class PopUp : MonoBehaviour
 
     private IEnumerator Hide()
     {
+
         _elementsPanel.transform.DOScale(_elementsMinSize, _animationDuration / 2).SetEase(Ease.InBack); ;
         _elementsPanel.DOFade(0f, _animationDuration / 2);
 
@@ -63,10 +67,12 @@ public class PopUp : MonoBehaviour
         yield return new WaitForSeconds(_animationDuration / 2);
         Disable();
 
+        _levelPause.ResumeGame();
     }
 
     private IEnumerator Show()
     {
+
         Enable();
         _backgroundPanel.DOFade(1, _animationDuration / 2);
 
@@ -74,7 +80,7 @@ public class PopUp : MonoBehaviour
 
         _elementsPanel.transform.DOScale(Vector3.one, _animationDuration / 2).SetEase(Ease.OutBack);
         _elementsPanel.DOFade(1f, _animationDuration / 2);
-
+        _levelPause.PauseGame();
     }
 
 }

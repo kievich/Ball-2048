@@ -13,7 +13,7 @@ public class BallUnifier : MonoBehaviour
     private int _maxBallValue;
     private const float gForce = 9.8f;
 
-    public event Action<int> BallUnited;
+    public static event Action<int> BallUnited;
 
     private void Start()
     {
