@@ -35,7 +35,7 @@ namespace UI
 
         private void onScoreChanged(int ballValue)
         {
-            _score += 2 * BallValueToRealValue(ballValue);
+            _score += 2 * Util.Converter.BallValueToRealValue(ballValue);
             AppData.SetScore(_score);
             _maxScore = AppData.MaxScore;
             DisplayScore();
@@ -48,12 +48,6 @@ namespace UI
             BallUnifier.BallUnited -= onScoreChanged;
             Doubler.Doubled -= onScoreChanged;
         }
-
-        private int BallValueToRealValue(int ballValue)
-        {
-            return (int)Mathf.Pow(2, ballValue + 1);
-        }
-
 
     }
 

@@ -13,6 +13,9 @@ namespace UI
         [SerializeField] private TMP_Text _counterText;
         [SerializeField] private BoosterType _boosterType;
 
+        [SerializeField] private Color _disabledTextColor;
+        [SerializeField] private Color _enabledTextColor;
+
         public Button Button { get; private set; }
         public TMP_Text CounterText => _counterText;
         public BoosterType BoosterType => _boosterType;
@@ -27,6 +30,12 @@ namespace UI
             _addButton.onClick.AddListener(onAddClick);
         }
 
+        public void SetTextColor(Color disabledTextColor, Color enabledTextColor)
+        {
+            _disabledTextColor = disabledTextColor;
+            _enabledTextColor = enabledTextColor;
+        }
+
         private void onClick()
         {
             Click?.Invoke(_boosterType);
@@ -39,9 +48,29 @@ namespace UI
 
         public void SetCount(int count)
         {
+            if (count == 0)
+                Disable();
+            else
+                Enable();
+
             _counterText.text = count.ToString();
         }
 
+        public void Disable()
+        {
+            Button.interactable = false;
+            CounterText.color = _disabledTextColor;
+        }
+
+        public void Enable()
+        {
+            if (AppData.GetBoosterNumber(_boosterType) > 0)
+            {
+                Button.interactable = true;
+                CounterText.color = _enabledTextColor;
+            }
+
+        }
     }
 }
 

@@ -1,9 +1,4 @@
-﻿/*
-Copyright (c) Shubham Saudolla
-https://github.com/shubham-saudolla
-*/
-
-using UnityEngine.Audio;
+﻿using UnityEngine.Audio;
 using UnityEngine;
 
 [System.Serializable]

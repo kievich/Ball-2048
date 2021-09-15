@@ -18,15 +18,16 @@ public class PopUpSystem : MonoBehaviour
 
     public void onBallCreated(int value)
     {
-        if (isLastBall(value) == false)
-        {
-            //_ballCreated.Show(value);
-        }
-        else
+        if (isLastBall(value) == true)
         {
             _lastBall.SetVisible(true);
-
+            return;
         }
+
+        if (value > 4)
+            _ballCreated.Show(value);
+
+
 
     }
 

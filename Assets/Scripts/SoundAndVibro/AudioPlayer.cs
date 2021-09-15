@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AudioPlayer : MonoBehaviour
 {
     [SerializeField] private AudioSystem _audioSystem;
-
+    [SerializeField] private int _vibrateDuration;
     private Dictionary<SettingOption, bool> _settingOption = new Dictionary<SettingOption, bool>();
 
 
@@ -64,7 +64,7 @@ public class AudioPlayer : MonoBehaviour
     private void doVibro()
     {
         if (_settingOption[SettingOption.Vibro])
-            Handheld.Vibrate();
+            Vibration.NativeVibration.Vibrate(_vibrateDuration);
     }
 
     private void UpdateLevelMusic()

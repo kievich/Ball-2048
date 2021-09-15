@@ -94,11 +94,13 @@ public static class AppData
             throw new System.Exception("NewScore can't be less than Score, Score = " + Score + ", NewScore = " + newScore);
         }
 
+        Save();
     }
 
     public static void ResetScore()
     {
         Score = 0;
+        Save();
     }
 
     public static void AddBooster(BoosterType booster, int number)
@@ -114,14 +116,15 @@ public static class AppData
         {
             throw new System.Exception("AppData doesn't cointain this type of Booster - " + booster.ToString());
         }
+        Save();
     }
 
     public static void DecreaseBooster(BoosterType booster, int number)
     {
         if (_boosterNumber.ContainsKey(booster))
         {
-            if (_boosterNumber[booster] - number >= 0)
-                throw new System.Exception("Booster Value can't be less than 0");
+            if (_boosterNumber[booster] - number < 0)
+                throw new System.Exception("Booster Value can't be less than 0 ");
 
             if (number > 0)
                 _boosterNumber[booster] -= number;
@@ -132,6 +135,7 @@ public static class AppData
         {
             throw new System.Exception("AppData doesn't cointain this type of Booster - " + booster.ToString());
         }
+        Save();
     }
 
     public static int GetBoosterNumber(BoosterType booster)

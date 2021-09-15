@@ -40,7 +40,6 @@ public class BallGun : MonoBehaviour
 
     private void PushBall(Vector3 direction)
     {
-        _trajectory.SetVisible(false);
         IsItemOnSpawnPoint = false;
         _currentBall.GetComponent<Rigidbody>().AddForce(direction * _pushForce);
         _currentBall = null;
@@ -50,7 +49,6 @@ public class BallGun : MonoBehaviour
 
     private void PushBooster(Vector3 direction)
     {
-        _trajectory.SetVisible(false);
         IsItemOnSpawnPoint = false;
         _currentBooster.GetComponent<Rigidbody>().AddForce(direction * _pushForce);
         _currentBooster = null;

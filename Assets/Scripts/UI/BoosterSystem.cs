@@ -19,17 +19,38 @@ namespace UI
             {
                 booster.Click += onClick;
                 booster.AddClick += onAddClick;
-                booster.SetCount(AppData.GetBoosterNumber(booster.BoosterType));
+                booster.SetTextColor(_disabledTextColor, _enabledTextColor);
             }
+            UpdateBusterNumber();
+
             _ballGun = FindObjectOfType<BallGun>();
             _ballGun.BusterPushed += onBoosterPushed;
         }
 
+        private void UpdateBusterNumber()
+        {
+            foreach (var booster in _boosters)
+            {
+                booster.SetCount(AppData.GetBoosterNumber(booster.BoosterType));
+            }
+        }
+
+        public void AddBuster(BoosterType boosterType, int number)
+        {
+            AppData.AddBooster(boosterType, number);
+            UpdateBusterNumber();
+        }
 
         public void onClick(BoosterType boosterType)
         {
-            _ballGun.SpawnBooster(boosterType);
-            DisableButtons();
+            if (AppData.GetBoosterNumber(boosterType) > 0)
+            {
+                AppData.DecreaseBooster(boosterType, 1);
+                UpdateBusterNumber();
+                _ballGun.SpawnBooster(boosterType);
+                DisableButtons();
+            }
+
         }
 
         public void onAddClick(BoosterType boosterType)
@@ -57,19 +78,13 @@ namespace UI
         private void DisableButtons()
         {
             foreach (var booster in _boosters)
-            {
-                booster.Button.interactable = false;
-                booster.CounterText.color = _disabledTextColor;
-            }
+                booster.Disable();
         }
 
         private void EnableButtons()
         {
             foreach (var booster in _boosters)
-            {
-                booster.Button.interactable = true;
-                booster.CounterText.color = _enabledTextColor;
-            }
+                booster.Enable();
         }
 
 

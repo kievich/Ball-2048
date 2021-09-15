@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
+using System;
 
 public class PopUp : MonoBehaviour
 {
@@ -15,6 +15,9 @@ public class PopUp : MonoBehaviour
     [SerializeField] private bool _enableOnStart;
 
     private LevelPause _levelPause;
+
+    public event Action Showed;
+    public event Action Hided;
 
     private void Start()
     {
@@ -49,15 +52,21 @@ public class PopUp : MonoBehaviour
     public void SetVisible(bool visible)
     {
         if (visible)
+        {
             StartCoroutine(Show());
+            Showed?.Invoke();
+        }
         else
+        {
             StartCoroutine(Hide());
+
+        }
     }
 
 
     private IEnumerator Hide()
     {
-
+        Hided?.Invoke();
         _elementsPanel.transform.DOScale(_elementsMinSize, _animationDuration / 2).SetEase(Ease.InBack); ;
         _elementsPanel.DOFade(0f, _animationDuration / 2);
 
@@ -72,7 +81,6 @@ public class PopUp : MonoBehaviour
 
     private IEnumerator Show()
     {
-
         Enable();
         _backgroundPanel.DOFade(1, _animationDuration / 2);
 

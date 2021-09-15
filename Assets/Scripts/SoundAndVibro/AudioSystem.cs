@@ -8,19 +8,17 @@ public class AudioSystem : MonoBehaviour
 {
     [SerializeField] private Sounds _soundsContainer;
     private static Sound[] _sounds;
-    private static AudioSystem _instance;
     private static bool isAudioSourcesInit = false;
 
     private void Awake()
     {
+        if (GameObject.FindObjectsOfType<AudioSystem>().Length > 1)
+            Destroy(this.gameObject);
+
         DontDestroyOnLoad(transform.gameObject);
 
         _sounds = _soundsContainer.Sound;
 
-        //if (_instance == null)
-        //    _instance = this;
-        //else if (_instance != this)
-        //    Destroy(gameObject);
     }
 
     private void Init()
