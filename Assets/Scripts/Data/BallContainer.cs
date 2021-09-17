@@ -13,10 +13,10 @@ public class BallContainer
 
         foreach (var ball in Ball.balls)
         {
-            if (ball.Status == BallStatus.Old)
+            if (ball.State.Value == BallStates.Normal)
             {
                 Transform ballTranform = ball.gameObject.transform;
-                BallPositions.Add(new BallPosition(ballTranform.position, ballTranform.rotation.eulerAngles,ball.Value));
+                BallPositions.Add(new BallPosition(ballTranform.position, ballTranform.rotation.eulerAngles, ball.Value));
             }
         }
     }

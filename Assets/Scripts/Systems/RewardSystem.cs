@@ -9,7 +9,7 @@ public class RewardSystem : MonoBehaviour
 
     [SerializeField] private AdsSystem _adsSystem;
     private RewardType _currentReward;
-    [SerializeField] private UI.BoosterSystem _busterSystem;
+    [SerializeField] private UI.BoosterSystem _boosterSystem;
 
     private void Start()
     {
@@ -28,11 +28,11 @@ public class RewardSystem : MonoBehaviour
 
         if (reward == RewardType.Bomb)
         {
-            _busterSystem.AddBuster(BoosterType.Bomb, 1);
+            _boosterSystem.AddBooster(BoosterType.Bomb, 1);
         }
         else if (reward == RewardType.Doubler)
         {
-            _busterSystem.AddBuster(BoosterType.Doubler, 1);
+            _boosterSystem.AddBooster(BoosterType.Doubler, 1);
         }
         else
         {

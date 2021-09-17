@@ -8,16 +8,16 @@ namespace Util
 {
     public static class Converter
     {
-        private static Dictionary<BoosterType, RewardType> _busterToReward;
+        private static Dictionary<BoosterType, RewardType> _boosterToReward;
         private static Dictionary<RewardType, AdType> _RewardToAdType;
 
         static Converter()
         {
-            _busterToReward = new Dictionary<BoosterType, RewardType>();
+            _boosterToReward = new Dictionary<BoosterType, RewardType>();
             _RewardToAdType = new Dictionary<RewardType, AdType>();
 
-            _busterToReward.Add(BoosterType.Bomb, RewardType.Bomb);
-            _busterToReward.Add(BoosterType.Doubler, RewardType.Doubler);
+            _boosterToReward.Add(BoosterType.Bomb, RewardType.Bomb);
+            _boosterToReward.Add(BoosterType.Doubler, RewardType.Doubler);
 
             _RewardToAdType.Add(RewardType.Bomb, AdType.BombReward);
             _RewardToAdType.Add(RewardType.Doubler, AdType.DoublerReward);
@@ -62,9 +62,9 @@ namespace Util
             return KeyByValue<RewardType, AdType>(_RewardToAdType, reward);
         }
 
-        public static RewardType BusterToReward(BoosterType booster)
+        public static RewardType BoosterToReward(BoosterType booster)
         {
-            return ValueBuyKey<BoosterType, RewardType>(_busterToReward, booster);
+            return ValueBuyKey<BoosterType, RewardType>(_boosterToReward, booster);
         }
 
         public static int BallValueToRealValue(int value)

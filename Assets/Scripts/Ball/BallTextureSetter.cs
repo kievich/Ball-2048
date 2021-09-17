@@ -15,4 +15,10 @@ public class BallTextureSetter : MonoBehaviour
             gameObject.GetComponent<Renderer>().material = _ballTextures.material[ballValue];
 
     }
+
+
+    public bool IsLastBall(int value)
+    {
+        return _ballTextures.material.Length - 1 <= value;
+    }
 }

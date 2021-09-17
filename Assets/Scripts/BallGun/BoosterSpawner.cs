@@ -15,10 +15,13 @@ public class BoosterSpawner : MonoBehaviour
     {
         _boosterMap.Add(BoosterType.Bomb, _bombTemplate);
         _boosterMap.Add(BoosterType.Doubler, _doublerTemplate);
+
     }
 
     public Booster SpawnBooster(BoosterType boosterType)
     {
-        return Instantiate(_boosterMap[boosterType], _spawnPoint.position, Quaternion.identity, _ballCluster);
+        Booster booster = Instantiate(_boosterMap[boosterType], _spawnPoint.position, Quaternion.identity, _ballCluster);
+        booster.State.Set(BoosterStates.OnSpawnPoint);
+        return booster;
     }
 }

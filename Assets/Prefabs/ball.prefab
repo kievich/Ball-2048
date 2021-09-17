@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 204075090944602814}
   - component: {fileID: 1960798599524705933}
   - component: {fileID: 3214861459621753449}
-  - component: {fileID: 84668635407067781}
+  - component: {fileID: -7165389079031804623}
+  - component: {fileID: 4817692696478004408}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b5c264036fa1b4f989c452b7076320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &84668635407067781
+--- !u!114 &-7165389079031804623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,8 +163,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6819354599451561135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba50ecf91b0bd44ebeee9d17c97ad32, type: 3}
+  m_Script: {fileID: 11500000, guid: 25ddad857d39eff489eaa8ddb00e1893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _newbieLifetime: 1
-  _oldPhysicMaterial: {fileID: 13400000, guid: a4c195d41843d4a439d3d3056b7bc728, type: 2}
+  _value: 0.24
+  _direction: {x: 0, y: 0, z: -1}
+--- !u!114 &4817692696478004408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6819354599451561135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4456681dd92a6f245a2063e37e0065aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

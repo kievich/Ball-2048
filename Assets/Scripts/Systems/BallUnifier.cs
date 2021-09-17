@@ -13,7 +13,7 @@ public class BallUnifier : MonoBehaviour
     private int _maxBallValue;
     private const float gForce = 9.8f;
 
-    public static event Action<int> BallUnited;
+    public static event Action<Ball> BallUnited;
 
     private void Start()
     {
@@ -22,12 +22,15 @@ public class BallUnifier : MonoBehaviour
 
     public void DoUnite(Ball sender, Ball crashedBall)
     {
+        if (LevelPause.IsPause || sender.State.Value != BallStates.Normal || crashedBall.State.Value != BallStates.Normal)
+            return;
+
         if (sender.Value == crashedBall.Value && sender.Value != _maxBallValue)
         {
             sender.IncreaseValue();
             ApplyUniteBounce(sender);
             Ball.Destroy(crashedBall);
-            BallUnited?.Invoke(sender.Value);
+            BallUnited?.Invoke(sender);
         }
 
     }

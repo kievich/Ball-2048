@@ -15,7 +15,7 @@ public class AdsPlayer : MonoBehaviour
     }
 
 
-    private void onBallUnited(int value)
+    private void onBallUnited(Ball ball)
     {
         //_adsSystem.ShowRewardedVideo(AdType.DoublerReward);
 

@@ -28,7 +28,7 @@ public class NoThanksButton : MonoBehaviour
 
     private IEnumerator ShowWithDelay()
     {
-        yield return new WaitForSeconds(_delay);
+        yield return new WaitForSecondsRealtime(_delay);
         SetVisible(true);
     }
 
@@ -46,7 +46,7 @@ public class NoThanksButton : MonoBehaviour
         if (visible)
         {
             _canvasGroup.interactable = true;
-            _canvasGroup.DOFade(1f, _fadeAnimationTime);
+            _canvasGroup.DOFade(1f, _fadeAnimationTime).SetUpdate(true);
         }
         else
         {

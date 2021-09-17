@@ -5,21 +5,26 @@ using UnityEngine;
 
 public class BoardLineCollider : MonoBehaviour
 {
-    private bool isLose = false;
+    private bool _isLose = false;
 
     public event Action Lose;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-
         if (other.TryGetComponent<Ball>(out Ball ball))
         {
-            if (ball.Status == BallStatus.Old && isLose == false)
+            if (ball.State.Value == BallStates.Normal && _isLose == false)
             {
                 Lose?.Invoke();
-                isLose = true;
+                _isLose = true;
                 Debug.Log("Lose");
             }
+
+            if (ball.State.Value == BallStates.Pushed)
+            {
+                ball.State.Set(BallStates.Normal);
+            }
         }
+
     }
 }

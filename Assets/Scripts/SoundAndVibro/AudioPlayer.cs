@@ -44,7 +44,7 @@ public class AudioPlayer : MonoBehaviour
         doVibro();
     }
 
-    private void onBallUnited(int value)
+    private void onBallUnited(Ball ball)
     {
         PlaySound(SoundKey.BallUnited);
         doVibro();

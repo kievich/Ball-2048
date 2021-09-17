@@ -21,13 +21,13 @@ namespace UI
                 booster.AddClick += onAddClick;
                 booster.SetTextColor(_disabledTextColor, _enabledTextColor);
             }
-            UpdateBusterNumber();
+            UpdateBoosterNumber();
 
             _ballGun = FindObjectOfType<BallGun>();
-            _ballGun.BusterPushed += onBoosterPushed;
+            _ballGun.BoosterPushed += onBoosterPushed;
         }
 
-        private void UpdateBusterNumber()
+        private void UpdateBoosterNumber()
         {
             foreach (var booster in _boosters)
             {
@@ -35,10 +35,10 @@ namespace UI
             }
         }
 
-        public void AddBuster(BoosterType boosterType, int number)
+        public void AddBooster(BoosterType boosterType, int number)
         {
-            AppData.AddBooster(boosterType, number);
-            UpdateBusterNumber();
+            AppData.AddBooster(boosterType, 10);
+            UpdateBoosterNumber();
         }
 
         public void onClick(BoosterType boosterType)
@@ -46,7 +46,7 @@ namespace UI
             if (AppData.GetBoosterNumber(boosterType) > 0)
             {
                 AppData.DecreaseBooster(boosterType, 1);
-                UpdateBusterNumber();
+                UpdateBoosterNumber();
                 _ballGun.SpawnBooster(boosterType);
                 DisableButtons();
             }
@@ -71,7 +71,7 @@ namespace UI
                 booster.Click -= onClick;
                 booster.AddClick -= onAddClick;
             }
-            _ballGun.BusterPushed -= EnableButtons;
+            _ballGun.BoosterPushed -= EnableButtons;
 
         }
 

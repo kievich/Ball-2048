@@ -14,6 +14,7 @@ public class BallInput : MonoBehaviour
     private void Start()
     {
         _ballGun = GetComponent<BallGun>();
+        LevelPause.Pause += ResetTrajectory;
     }
 
     private void Update()
@@ -53,7 +54,6 @@ public class BallInput : MonoBehaviour
         if (Input.touchCount > 0 && _ballGun.IsItemOnSpawnPoint && !EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
         {
             Touch touch = Input.touches[0];
-            Vibration.NativeVibration.Vibrate(100);
             if (touch.phase == TouchPhase.Began)
             {
                 _trajectory.ResetRotation();
@@ -67,12 +67,24 @@ public class BallInput : MonoBehaviour
                 _trajectory.UpdateTrajectoryLenght();
             }
 
-            if (touch.phase == TouchPhase.Ended && _isMoving)
+            if (touch.phase == TouchPhase.Ended && _isMoving && LevelPause.IsPause == false)
             {
                 _ballGun.PushItem(_trajectory.GetDirection());
                 _trajectory.SetVisible(false);
                 _isMoving = false;
             }
         }
+    }
+
+    private void ResetTrajectory()
+    {
+        _trajectory.ResetRotation();
+        _trajectory.SetVisible(false);
+        _isMoving = false;
+    }
+    private void OnDestroy()
+    {
+        LevelPause.Pause -= ResetTrajectory;
+
     }
 }

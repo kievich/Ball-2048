@@ -33,8 +33,9 @@ namespace UI
             _maxScoreText.text = "Max: " + _maxScore.ToString();
         }
 
-        private void onScoreChanged(int ballValue)
+        private void onScoreChanged(Ball ball)
         {
+            int ballValue = ball.Value;
             _score += 2 * Util.Converter.BallValueToRealValue(ballValue);
             AppData.SetScore(_score);
             _maxScore = AppData.MaxScore;

@@ -20,7 +20,7 @@ public class BallGun : MonoBehaviour
     public bool IsItemOnSpawnPoint { get; private set; } = false;
 
     public event Action BallPushed;
-    public event Action BusterPushed;
+    public event Action BoosterPushed;
 
     private void Start()
     {
@@ -41,6 +41,7 @@ public class BallGun : MonoBehaviour
     private void PushBall(Vector3 direction)
     {
         IsItemOnSpawnPoint = false;
+        _currentBall.State.Set(BallStates.Pushed);
         _currentBall.GetComponent<Rigidbody>().AddForce(direction * _pushForce);
         _currentBall = null;
         BallPushed?.Invoke();
@@ -50,9 +51,10 @@ public class BallGun : MonoBehaviour
     private void PushBooster(Vector3 direction)
     {
         IsItemOnSpawnPoint = false;
+        _currentBooster.State.Set(BoosterStates.Normal);
         _currentBooster.GetComponent<Rigidbody>().AddForce(direction * _pushForce);
         _currentBooster = null;
-        BusterPushed?.Invoke();
+        BoosterPushed?.Invoke();
         Invoke(nameof(SpawnBall), _spawnDelay);
     }
 
@@ -72,5 +74,6 @@ public class BallGun : MonoBehaviour
         _currentBall = _ballSpawner.SpawnBall();
         IsItemOnSpawnPoint = true;
     }
+
 
 }

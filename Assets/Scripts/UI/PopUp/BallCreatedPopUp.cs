@@ -10,21 +10,21 @@ public class BallCreatedPopUp : PopUp
     [SerializeField] private BallTextures _ballTextures;
     [SerializeField] private TMPro.TextMeshProUGUI _ballValue;
     [SerializeField] private RawImage _ballImage;
-    [SerializeField] private RawImage _busterImage;
-    [SerializeField] private BusterSprites _rewardSprites;
+    [SerializeField] private RawImage _boosterImage;
+    [SerializeField] private BoosterSprites _rewardSprites;
 
-    private BoosterType _buster;
+    private BoosterType _booster;
 
     public void Show(int value)
     {
-        SetBusterType();
+        SetBoosterType();
         _ballImage.texture = _ballTextures.material[value].mainTexture;
         _ballValue.text = Util.Converter.BallValueToRealValue(value).ToString();
-        _busterImage.texture = _rewardSprites.GetSprite(_buster);
+        _boosterImage.texture = _rewardSprites.GetSprite(_booster);
 
         base.SetVisible(true);
 
-        gameObject.GetComponentInChildren<RewardedButton>().SetReward(Util.Converter.BusterToReward(_buster));
+        gameObject.GetComponentInChildren<RewardedButton>().SetReward(Util.Converter.BoosterToReward(_booster));
     }
 
     public void Hide()
@@ -32,9 +32,9 @@ public class BallCreatedPopUp : PopUp
         base.SetVisible(false);
     }
 
-    private void SetBusterType()
+    private void SetBoosterType()
     {
-        var busterCount = Enum.GetNames(typeof(BoosterType)).Length;
-        _buster = (BoosterType)UnityEngine.Random.Range(0, busterCount);
+        var boosterCount = Enum.GetNames(typeof(BoosterType)).Length;
+        _booster = (BoosterType)UnityEngine.Random.Range(0, boosterCount);
     }
 }

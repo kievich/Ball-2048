@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Doubler : Booster
 {
-    static public event Action<int> Doubled;
+    static public event Action<Ball> Doubled;
 
     protected override void onCollisionWithBall(Ball ball)
     {
@@ -14,8 +14,13 @@ public class Doubler : Booster
 
     private void Double(Ball ball)
     {
-        ball.IncreaseValue();
-        Doubled?.Invoke(ball.Value);
+        if (ball.IsLast == false)
+        {
+            ball.IncreaseValue();
+            Doubled?.Invoke(ball);
+        }
         Destroy(gameObject);
+
+
     }
 }

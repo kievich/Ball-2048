@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3812402118653699926}
   - component: {fileID: 438689205363773507}
   - component: {fileID: 7969595075408726442}
+  - component: {fileID: -6484462963297458487}
   m_Layer: 0
   m_Name: Doubler
   m_TagString: Untagged
@@ -125,3 +126,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc757b133849fa4aa31ee90e4ab38b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6484462963297458487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6345437877041387097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ddad857d39eff489eaa8ddb00e1893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 0.13
+  _direction: {x: 0, y: 0, z: -1}

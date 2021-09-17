@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelReloader : MonoBehaviour
 {
+    [SerializeField] private LevelPause _levelPause;
     public void Reload()
     {
+        if (LevelPause.IsPause)
+            _levelPause.ResumeGame();
 
         Ball.DestroyAll();
         AppData.ResetScore();

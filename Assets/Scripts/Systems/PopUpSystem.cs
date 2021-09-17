@@ -16,23 +16,26 @@ public class PopUpSystem : MonoBehaviour
         Doubler.Doubled += onBallCreated;
     }
 
-    public void onBallCreated(int value)
+    private void onBallCreated(Ball ball)
     {
-        if (isLastBall(value) == true)
+        int value = ball.Value;
+
+        if (ball.IsLast == true)
         {
             _lastBall.SetVisible(true);
             return;
         }
 
-        if (value > 4)
+        if (value > 0)
+        {
             _ballCreated.Show(value);
 
-
-
+        }
     }
 
-    private bool isLastBall(int value)
+    private void OnDestroy()
     {
-        return _ballTextures.material.Length - 1 <= value;
+        BallUnifier.BallUnited -= onBallCreated;
+        Doubler.Doubled -= onBallCreated;
     }
 }
