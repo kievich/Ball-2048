@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelReloader : MonoBehaviour
 {
     [SerializeField] private LevelPause _levelPause;
+    [SerializeField] private DefautBallPositions _defautPositions;
     public void Reload()
     {
         if (LevelPause.IsPause)
@@ -13,7 +14,8 @@ public class LevelReloader : MonoBehaviour
 
         Ball.DestroyAll();
         AppData.ResetScore();
-        AppData.Save();
+        AppData.SetDefaultBallPosition(_defautPositions);
+        AppData.SetShouldBeRestarted(false);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

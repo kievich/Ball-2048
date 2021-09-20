@@ -8,8 +8,11 @@ public static class AppData
 {
     private static int _defaulIntValue = 0;
     private static bool _defaulBoolValue = true;
+    private static bool _defaulShouldBeRestartedValue = false;
+
     public static int Score { get; private set; }
     public static int MaxScore { get; private set; }
+    public static bool ShouldBeRestarted { get; private set; }
 
     private static Dictionary<BoosterType, int> _boosterNumber = new Dictionary<BoosterType, int>();
     private static Dictionary<SettingOption, bool> _settingOption = new Dictionary<SettingOption, bool>();
@@ -26,6 +29,7 @@ public static class AppData
     {
         Score = _prefsSystem.LoadInt(nameof(Score), _defaulIntValue);
         MaxScore = _prefsSystem.LoadInt(nameof(MaxScore), _defaulIntValue);
+        ShouldBeRestarted = _prefsSystem.LoadBool(nameof(ShouldBeRestarted), _defaulShouldBeRestartedValue);
 
         _boosterNumber.Add(BoosterType.Bomb, _prefsSystem.LoadInt(BoosterType.Bomb.ToString(), _defaulIntValue));
         _boosterNumber.Add(BoosterType.Doubler, _prefsSystem.LoadInt(BoosterType.Doubler.ToString(), _defaulIntValue));
@@ -46,6 +50,8 @@ public static class AppData
     {
         _prefsSystem.SaveInt(nameof(Score), Score);
         _prefsSystem.SaveInt(nameof(MaxScore), MaxScore);
+        _prefsSystem.SaveBool(nameof(ShouldBeRestarted), ShouldBeRestarted);
+
         _prefsSystem.SaveInt(BoosterType.Bomb.ToString(), _boosterNumber[BoosterType.Bomb]);
         _prefsSystem.SaveInt(BoosterType.Doubler.ToString(), _boosterNumber[BoosterType.Doubler]);
     }
@@ -63,13 +69,14 @@ public static class AppData
 
     }
 
-    public static BallContainer LoadBallPosition()
+    public static BallContainer LoadBallPosition(DefautBallPositions defautPositions)
     {
-        return _saveSystem.LoadPosition();
+        return _saveSystem.LoadPosition(defautPositions);
     }
-    private static void ClearBallPosition()
+    public static void SetDefaultBallPosition(DefautBallPositions defautPositions)
     {
-        _saveSystem.ClearPosition();
+        _saveSystem.SetDefaultBallPosition(defautPositions);
+
     }
 
     //public static void ResetToReload()
@@ -100,7 +107,7 @@ public static class AppData
     public static void ResetScore()
     {
         Score = 0;
-        Save();
+        SaveGameData();
     }
 
     public static void AddBooster(BoosterType booster, int number)
@@ -160,5 +167,12 @@ public static class AppData
     {
         return _settingOption[settingOption];
     }
+
+    public static void SetShouldBeRestarted(bool value)
+    {
+        ShouldBeRestarted = value;
+        SaveGameData();
+    }
+
 
 }

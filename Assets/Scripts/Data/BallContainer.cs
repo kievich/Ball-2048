@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BallContainer
 {
-
     public List<BallPosition> BallPositions;
 
     public void FillUp()
@@ -20,4 +19,15 @@ public class BallContainer
             }
         }
     }
+    public BallContainer(string json)
+    {
+        BallPositions = JsonUtility.FromJson<BallContainer>(json).BallPositions;
+    }
+
+    public BallContainer()
+    {
+
+    }
 }
+
+

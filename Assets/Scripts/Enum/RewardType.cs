@@ -1,6 +1,6 @@
 public enum RewardType
 {
     Bomb,
-    Doubler
-
+    Doubler,
+    Continue
 }

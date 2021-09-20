@@ -16,7 +16,7 @@ public class RewardedButton : MonoBehaviour
         _reward = reward;
     }
 
-    private void Start()
+    private void Awake()
     {
         gameObject.GetComponent<Button>().onClick.AddListener(onClick);
         _rewardSystem = FindObjectOfType<RewardSystem>();

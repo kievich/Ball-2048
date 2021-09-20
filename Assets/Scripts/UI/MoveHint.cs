@@ -11,7 +11,7 @@ public class MoveHint : MonoBehaviour
         FindObjectOfType<BallGun>().BallPushed += onBallPushed;
     }
 
-    public void onBallPushed()
+    public void onBallPushed(Ball ball)
     {
         _hintText.enabled = false;
     }

@@ -19,7 +19,7 @@ public class BallGun : MonoBehaviour
     private Booster _currentBooster = null;
     public bool IsItemOnSpawnPoint { get; private set; } = false;
 
-    public event Action BallPushed;
+    public event Action<Ball> BallPushed;
     public event Action BoosterPushed;
 
     private void Start()
@@ -43,8 +43,8 @@ public class BallGun : MonoBehaviour
         IsItemOnSpawnPoint = false;
         _currentBall.State.Set(BallStates.Pushed);
         _currentBall.GetComponent<Rigidbody>().AddForce(direction * _pushForce);
+        BallPushed?.Invoke(_currentBall);
         _currentBall = null;
-        BallPushed?.Invoke();
         Invoke(nameof(SpawnBall), _spawnDelay);
     }
 

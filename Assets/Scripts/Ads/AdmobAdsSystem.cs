@@ -17,7 +17,7 @@ public class AdmobAdsSystem : AdsSystem
     private Dictionary<AdType, RewardedAd> _rewardedMap = new Dictionary<AdType, RewardedAd>();
     private RewardType _currentReward;
 
-    AdRequest _request;
+    private AdRequest _request;
 
     private void Awake()
     {
@@ -46,6 +46,7 @@ public class AdmobAdsSystem : AdsSystem
     {
         _rewardedMap.Add(AdType.BombReward, new RewardedAd(_adsID.GetID(AdType.BombReward)));
         _rewardedMap.Add(AdType.DoublerReward, new RewardedAd(_adsID.GetID(AdType.DoublerReward)));
+        _rewardedMap.Add(AdType.ContinueReward, new RewardedAd(_adsID.GetID(AdType.ContinueReward)));
 
         foreach (var item in _rewardedMap)
             item.Value.LoadAd(_request);
@@ -76,10 +77,13 @@ public class AdmobAdsSystem : AdsSystem
     {
         if (_rewardedMap[rewardType].IsLoaded())
         {
+            Debug.Log("ShowRewardedVideo" + rewardType);
             _rewardedMap[rewardType].Show();
+
             _rewardedMap[rewardType].OnUserEarnedReward += OnUserEarnedReward;
             _rewardedMap[rewardType].LoadAd(_request);
             _currentReward = Util.Converter.AdTypeToReward(rewardType);
+
         }
         else
         {
@@ -87,6 +91,7 @@ public class AdmobAdsSystem : AdsSystem
         }
 
     }
+
     private void OnUserEarnedReward(object sender, EventArgs args)
     {
         EarnedReward?.Invoke(_currentReward);

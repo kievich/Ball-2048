@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class JsonSaveSystem
 {
-    private const string FileName = "BallPositionJson";
-    private readonly string Path = Application.persistentDataPath + "/" + FileName;
+    private readonly string Path = Application.persistentDataPath + "/" + Constants.BallPositionJsonFileName;
     public void SavePosition(BallContainer container)
     {
         var json = JsonUtility.ToJson(container);
@@ -18,7 +17,7 @@ public class JsonSaveSystem
 
     }
 
-    public BallContainer LoadPosition()
+    public BallContainer LoadPosition(DefautBallPositions defautPositions)
     {
         BallContainer ballContainer;
 
@@ -28,18 +27,19 @@ public class JsonSaveSystem
             {
                 ballContainer = JsonUtility.FromJson<BallContainer>(sr.ReadToEnd());
             }
-            Debug.Log(ballContainer.BallPositions[0].Rotation + " - Pos");
+
             return ballContainer;
         }
         catch
         {
-            return new BallContainer();
+            return new BallContainer(defautPositions.GetRandomJsonPosition());
         }
     }
 
-    public void ClearPosition()
+    public void SetDefaultBallPosition(DefautBallPositions defautPositions)
     {
-        var json = JsonUtility.ToJson(new BallContainer());
+        var json = JsonUtility.ToJson(new BallContainer(defautPositions.GetRandomJsonPosition()));
+
         using (StreamWriter sw = new StreamWriter(Path, false, System.Text.Encoding.Default))
         {
             sw.WriteLine(json);

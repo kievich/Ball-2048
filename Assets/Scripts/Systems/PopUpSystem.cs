@@ -28,7 +28,7 @@ public class PopUpSystem : MonoBehaviour
 
         if (value > 0)
         {
-            _ballCreated.Show(value);
+            //_ballCreated.Show(value);
 
         }
     }

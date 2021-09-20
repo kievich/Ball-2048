@@ -8,8 +8,10 @@ public class RewardSystem : MonoBehaviour
     public event Action RewardGiven;
 
     [SerializeField] private AdsSystem _adsSystem;
-    private RewardType _currentReward;
     [SerializeField] private UI.BoosterSystem _boosterSystem;
+    [SerializeField] private LevelContinue _levelContinue;
+
+    private RewardType _currentReward;
 
     private void Start()
     {
@@ -34,9 +36,13 @@ public class RewardSystem : MonoBehaviour
         {
             _boosterSystem.AddBooster(BoosterType.Doubler, 1);
         }
+        else if (reward == RewardType.Continue)
+        {
+            _levelContinue.Continue();
+        }
         else
         {
-            throw new Exception("GiveReward can't resolve this reward type: " + reward.ToString());
+            throw new Exception("RewardSystem can't resolve this reward type: " + reward.ToString());
         }
 
 

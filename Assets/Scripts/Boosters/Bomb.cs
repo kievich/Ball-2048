@@ -19,28 +19,13 @@ public class Bomb : Booster
 
     private void Explosion()
     {
-        var balls = FindBallsInRadius();
+        var balls = Util.BallHelper.FindBallsInRadius(gameObject.transform.position, _radius,BallStates.Normal);
 
         foreach (var ball in balls)
         {
             Ball.Destroy(ball);
         }
         Destroy(gameObject);
-    }
-
-    private List<Ball> FindBallsInRadius()
-    {
-        List<Ball> balls = new List<Ball>();
-        Vector3 position = gameObject.transform.position;
-
-        foreach (var ball in Ball.balls)
-        {
-            if (Vector3.Distance(position, ball.gameObject.transform.position) < _radius && ball.State.Value == BallStates.Normal)
-                balls.Add(ball);
-
-        }
-        return balls;
-
     }
 
 }

@@ -22,6 +22,7 @@ public class BallUnifier : MonoBehaviour
 
     public void DoUnite(Ball sender, Ball crashedBall)
     {
+        return;
         if (LevelPause.IsPause || sender.State.Value != BallStates.Normal || crashedBall.State.Value != BallStates.Normal)
             return;
 

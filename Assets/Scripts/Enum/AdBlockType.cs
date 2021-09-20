@@ -3,5 +3,6 @@ public enum AdType
     InterstitialVideo,
     Banner,
     BombReward,
-    DoublerReward
+    DoublerReward,
+    ContinueReward
 }

@@ -16,16 +16,17 @@ public class BallState : MonoBehaviour
 
         if (state == BallStates.OnSpawnPoint)
         {
-            _rigidbody.isKinematic = true;
+            _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
 
         if (state == BallStates.Pushed || state == BallStates.Normal)
         {
-            _rigidbody.isKinematic = false;
+            _rigidbody.constraints = RigidbodyConstraints.None;
         }
 
         Value = state;
 
     }
+
 
 }

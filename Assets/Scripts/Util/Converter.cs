@@ -21,6 +21,8 @@ namespace Util
 
             _RewardToAdType.Add(RewardType.Bomb, AdType.BombReward);
             _RewardToAdType.Add(RewardType.Doubler, AdType.DoublerReward);
+            _RewardToAdType.Add(RewardType.Continue, AdType.ContinueReward);
+
         }
 
         public static W ValueBuyKey<T, W>(this Dictionary<T, W> dict, T key)
