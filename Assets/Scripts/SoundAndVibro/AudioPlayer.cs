@@ -8,7 +8,7 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField] private AudioSystem _audioSystem;
     [SerializeField] private int _vibrateDuration;
     private Dictionary<SettingOption, bool> _settingOption = new Dictionary<SettingOption, bool>();
-
+    [SerializeField] private PopUp _lastBallPopUp;
 
     private void Start()
     {
@@ -16,12 +16,12 @@ public class AudioPlayer : MonoBehaviour
 
         SettingSwitch.OptionChanged += onOptionUpdated;
 
-        foreach (Button b in Resources.FindObjectsOfTypeAll(typeof(Button)))
-        {
-            b.onClick.AddListener(onButtonClick);
+        foreach (Button button in Resources.FindObjectsOfTypeAll(typeof(Button)))
+            button.onClick.AddListener(onButtonClick);
 
-        }
         BallUnifier.BallUnited += onBallUnited;
+        Booster.Performed += onBoosterPerformed;
+        _lastBallPopUp.Showed += onLastBallPopUpCreated;
         UpdateLevelMusic();
     }
 
@@ -41,13 +41,24 @@ public class AudioPlayer : MonoBehaviour
     private void onButtonClick()
     {
         PlaySound(SoundKey.ButtonClick);
-        doVibro();
+        DoVibro();
     }
 
     private void onBallUnited(Ball ball)
     {
         PlaySound(SoundKey.BallUnited);
-        doVibro();
+        DoVibro();
+    }
+
+    private void onBoosterPerformed(BoosterType type)
+    {
+        PlaySound(Util.Converter.BoosterToSoundKey(type));
+        DoVibro();
+    }
+
+    private void onLastBallPopUpCreated()
+    {
+        PlaySound(SoundKey.LastBallCreated);
     }
 
     private void UpdateOption(SettingOption option)
@@ -61,7 +72,7 @@ public class AudioPlayer : MonoBehaviour
             _audioSystem.Play(soundKey);
     }
 
-    private void doVibro()
+    private void DoVibro()
     {
         if (_settingOption[SettingOption.Vibro])
             Vibration.NativeVibration.Vibrate(_vibrateDuration);
@@ -75,5 +86,13 @@ public class AudioPlayer : MonoBehaviour
         if (_settingOption[SettingOption.Music] == false)
             _audioSystem.Stop(SoundKey.LevelMusic);
     }
+
+    private void OnDestroy()
+    {
+
+        BallUnifier.BallUnited -= onBallUnited;
+        _lastBallPopUp.Showed -= onLastBallPopUpCreated;
+    }
+
 
 }

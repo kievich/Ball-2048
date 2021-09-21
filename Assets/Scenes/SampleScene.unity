@@ -1287,6 +1287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adsSystem: {fileID: 865129258}
+  _noThanksButton: {fileID: 1659187172}
+  _probabilityOfAdAfterNoThanks: 80
+  _delayBeforeShowAdAfterNoThanks: 0.7
 --- !u!224 &449216459 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2319025174879373349, guid: 31ec5cdc0e0d58d4b97f6abf30769378,
@@ -2046,6 +2049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSystem: {fileID: 2078537819}
   _vibrateDuration: 30
+  _lastBallPopUp: {fileID: 1134300654}
 --- !u!224 &673195619 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2319025175779749718, guid: 31ec5cdc0e0d58d4b97f6abf30769378,
@@ -3536,7 +3540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0.00001632766, y: -0.93758583, z: 0.347754, w: -0.0000060559883}
-  m_LocalPosition: {x: 0, y: 7.2, z: 6.34}
+  m_LocalPosition: {x: 0, y: 7.2, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6357,6 +6361,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1659187172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4855710930655194275, guid: 69b5f581b78e3404b8e9ad058df19902,
+    type: 3}
+  m_PrefabInstance: {fileID: 1023504410}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7f1e7258b7daf4d987dcf02fc904b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1662229958
 GameObject:
   m_ObjectHideFlags: 0
@@ -7797,6 +7813,7 @@ MonoBehaviour:
   _freeBall: {fileID: 673195620}
   _lastBall: {fileID: 1134300654}
   _ballTextures: {fileID: 11400000, guid: 4c1ee3f596513b745b84daa77d777200, type: 2}
+  _delayBeforeShowPopUp: 2
 --- !u!225 &2078466581 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 2319025175369340454, guid: 31ec5cdc0e0d58d4b97f6abf30769378,

@@ -64,14 +64,12 @@ public class PopUp : MonoBehaviour
             StartCoroutine(Hide());
     }
 
-
     private IEnumerator Hide()
     {
 
         if (_mode != PopUpMode.Overlay)
             _isShowed = false;
 
-        Hided?.Invoke();
         _elementsPanel.transform.DOScale(_elementsMinSize, _animationDuration / 2).SetEase(Ease.InBack).SetUpdate(true);
         _elementsPanel.DOFade(0f, _animationDuration / 2).SetUpdate(true);
 
@@ -84,6 +82,7 @@ public class PopUp : MonoBehaviour
         if (_isShowed == false)
             _levelPause.ResumeGame();
         ShowFromQueue();
+        Hided?.Invoke();
     }
 
     private IEnumerator Show()

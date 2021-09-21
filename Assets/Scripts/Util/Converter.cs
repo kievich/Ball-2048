@@ -10,11 +10,13 @@ namespace Util
     {
         private static Dictionary<BoosterType, RewardType> _boosterToReward;
         private static Dictionary<RewardType, AdType> _RewardToAdType;
+        private static Dictionary<BoosterType, SoundKey> _boosterToSoundKey;
 
         static Converter()
         {
             _boosterToReward = new Dictionary<BoosterType, RewardType>();
             _RewardToAdType = new Dictionary<RewardType, AdType>();
+            _boosterToSoundKey = new Dictionary<BoosterType, SoundKey>();
 
             _boosterToReward.Add(BoosterType.Bomb, RewardType.Bomb);
             _boosterToReward.Add(BoosterType.Doubler, RewardType.Doubler);
@@ -23,6 +25,8 @@ namespace Util
             _RewardToAdType.Add(RewardType.Doubler, AdType.DoublerReward);
             _RewardToAdType.Add(RewardType.Continue, AdType.ContinueReward);
 
+            _boosterToSoundKey.Add(BoosterType.Bomb, SoundKey.Bomb);
+            _boosterToSoundKey.Add(BoosterType.Doubler, SoundKey.Doubler);
         }
 
         public static W ValueBuyKey<T, W>(this Dictionary<T, W> dict, T key)
@@ -69,9 +73,16 @@ namespace Util
             return ValueBuyKey<BoosterType, RewardType>(_boosterToReward, booster);
         }
 
+        public static SoundKey BoosterToSoundKey(BoosterType booster)
+        {
+            return ValueBuyKey<BoosterType, SoundKey>(_boosterToSoundKey, booster);
+        }
+
         public static int BallValueToRealValue(int value)
         {
             return (int)UnityEngine.Mathf.Pow(2, value + 1);
         }
+
+
     }
 }

@@ -40,7 +40,7 @@ public class AdmobAdsSystem : AdsSystem
     }
     private void InitBanner()
     {
-        _bannerView = new BannerView(_adsID.GetID(AdType.Banner), AdSize.Banner, AdPosition.Bottom);
+        _bannerView = new BannerView(_adsID.GetID(AdType.Banner), AdSize.IABBanner, AdPosition.Bottom);
     }
     private void InitRewardedMap()
     {
@@ -56,10 +56,16 @@ public class AdmobAdsSystem : AdsSystem
 
     public override void ShowInterstitialVideo()
     {
-        if (this._interstitialVideo.IsLoaded())
-            this._interstitialVideo.Show();
+        if (_interstitialVideo.IsLoaded())
+        {
+            _interstitialVideo.Show();
+            _interstitialVideo.LoadAd(_request);
+        }
         else
+        {
             Debug.Log("Not Loaded");
+
+        }
 
     }
 

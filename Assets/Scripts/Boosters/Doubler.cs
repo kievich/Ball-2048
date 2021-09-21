@@ -21,6 +21,7 @@ public class Doubler : Booster
         }
         Destroy(gameObject);
 
+        base.OnPerformed(BoosterType.Bomb);
 
     }
 }

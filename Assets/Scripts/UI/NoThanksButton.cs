@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 [RequireComponent(typeof(Button))]
 [RequireComponent(typeof(CanvasGroup))]
@@ -13,6 +14,8 @@ public class NoThanksButton : MonoBehaviour
     [SerializeField] float _fadeAnimationTime;
     private Button _button;
     private CanvasGroup _canvasGroup = null;
+    public event Action Click;
+
 
     void OnEnable()
     {
@@ -34,6 +37,7 @@ public class NoThanksButton : MonoBehaviour
 
     private void onClick()
     {
+        Click?.Invoke();
         _parentPopUp.SetVisible(false);
     }
 
@@ -53,14 +57,6 @@ public class NoThanksButton : MonoBehaviour
             _canvasGroup.interactable = false;
             _canvasGroup.alpha = 0f;
         }
-    }
-
-
-
-    private void OnDisable()
-    {
-        // SetVisible(false);
-
     }
 
 }

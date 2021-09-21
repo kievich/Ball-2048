@@ -19,13 +19,14 @@ public class Bomb : Booster
 
     private void Explosion()
     {
-        var balls = Util.BallHelper.FindBallsInRadius(gameObject.transform.position, _radius,BallStates.Normal);
+        var balls = Util.BallHelper.FindBallsInRadius(gameObject.transform.position, _radius, BallStates.Normal);
 
         foreach (var ball in balls)
         {
             Ball.Destroy(ball);
         }
         Destroy(gameObject);
+        base.OnPerformed(BoosterType.Bomb);
     }
 
 }

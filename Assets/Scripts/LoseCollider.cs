@@ -29,10 +29,7 @@ public class LoseCollider : MonoBehaviour
     {
         if (other.TryGetComponent<Ball>(out Ball ball))
             if (ball.State.Value == BallStates.Pushed)
-            {
-                Debug.Log(ball.State.Value);
                 ball.State.Set(BallStates.Normal);
-            }
     }
 
     private void onBallPushed(Ball ball)

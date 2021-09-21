@@ -26,10 +26,7 @@ public class Trajectory : MonoBehaviour
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, GetDirection(), out hit, Mathf.Infinity))
-        {
-
             _trajectoryPlane.SetLenght(DistanceToPlaneLenght(hit.distance));
-        }
 
     }
 
@@ -50,6 +47,7 @@ public class Trajectory : MonoBehaviour
     public void SetVisible(bool visible)
     {
         _renderer.enabled = visible;
+        UpdateTrajectoryLenght();
     }
 
     public void Rotate(float inputValue)
