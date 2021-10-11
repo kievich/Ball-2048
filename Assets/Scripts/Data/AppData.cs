@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Newtonsoft.Json;
 using System;
 
 public static class AppData
@@ -85,8 +84,6 @@ public static class AppData
     //    SaveGameData();
     //    ClearBallPosition();
     //}
-
-
 
     public static void SetScore(int newScore)
     {
