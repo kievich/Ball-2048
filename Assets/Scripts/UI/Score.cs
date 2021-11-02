@@ -27,6 +27,13 @@ namespace UI
             _maxScore = AppData.MaxScore;
             DisplayScore();
         }
+
+        private void OnDisable()
+        {
+            BallUnifier.BallUnited -= onScoreChanged;
+            Doubler.Doubled -= onScoreChanged;
+        }
+
         private void DisplayScore()
         {
             _scoreText.text = _score.ToString();
@@ -44,14 +51,6 @@ namespace UI
 
         }
 
-        private void OnDisable()
-        {
-            BallUnifier.BallUnited -= onScoreChanged;
-            Doubler.Doubled -= onScoreChanged;
-        }
-
     }
 
 }
-
-

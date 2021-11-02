@@ -27,6 +27,16 @@ namespace UI
             _ballGun.BoosterPushed += onBoosterPushed;
         }
 
+        private void OnDisable()
+        {
+            foreach (var booster in _boosters)
+            {
+                booster.Click -= onClick;
+                booster.AddClick -= onAddClick;
+            }
+            _ballGun.BoosterPushed -= EnableButtons;
+
+        }
         private void UpdateBoosterNumber()
         {
             foreach (var booster in _boosters)
@@ -55,24 +65,12 @@ namespace UI
 
         public void onAddClick(BoosterType boosterType)
         {
-            Debug.Log("onAddClick - " + boosterType.ToString());
 
         }
 
         private void onBoosterPushed()
         {
             Invoke(nameof(EnableButtons), _enableButtonsDelay);
-        }
-
-        private void OnDisable()
-        {
-            foreach (var booster in _boosters)
-            {
-                booster.Click -= onClick;
-                booster.AddClick -= onAddClick;
-            }
-            _ballGun.BoosterPushed -= EnableButtons;
-
         }
 
         private void DisableButtons()

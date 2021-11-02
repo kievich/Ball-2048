@@ -19,13 +19,6 @@ public class LevelPause : MonoBehaviour
     {
         _velocity.Clear();
         _balls.Clear();
-        //foreach (var ball in Ball.balls)
-        //{
-        //    _balls.Add(ball);
-        //    _velocity.Add(ball.Rigidbody.velocity);
-        //    ball.Rigidbody.Sleep();
-        //    ball.SideForce.Enable = false;
-        //}
         Time.timeScale = 0;
 
         Pause?.Invoke();
@@ -34,19 +27,8 @@ public class LevelPause : MonoBehaviour
 
     public void ResumeGame()
     {
-        //for (var i = 0; i < _balls.Count; i++)
-        //{
-        //    _balls[i].Rigidbody.WakeUp();
-        //    _balls[i].SideForce.Enable = true;
-        //    _balls[i].Rigidbody.velocity = _velocity[i];
-        //}
-
         Time.timeScale = 1;
-
-
         Resume?.Invoke();
         IsPause = false;
     }
 }
-
-

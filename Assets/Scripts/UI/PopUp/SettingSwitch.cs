@@ -19,6 +19,11 @@ public class SettingSwitch : MonoBehaviour
         UpdateEnableStatus();
     }
 
+    private void OnDestroy()
+    {
+        GetComponent<Button>().onClick.RemoveListener(onClick);
+    }
+
     private void onClick()
     {
         AppData.SwitchSetting(_settingOption);
@@ -37,11 +42,5 @@ public class SettingSwitch : MonoBehaviour
             _rawImage.texture = _enableImage;
         else
             _rawImage.texture = _disableImage;
-    }
-
-    private void OnDestroy()
-    {
-        GetComponent<Button>().onClick.RemoveListener(onClick);
-
     }
 }

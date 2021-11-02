@@ -30,6 +30,12 @@ namespace UI
             _addButton.onClick.AddListener(onAddClick);
         }
 
+        private void OnDestroy()
+        {
+            Button.onClick.RemoveListener(onClick);
+            _addButton.onClick.RemoveListener(onAddClick);
+        }
+
         public void SetTextColor(Color disabledTextColor, Color enabledTextColor)
         {
             _disabledTextColor = disabledTextColor;
@@ -73,4 +79,3 @@ namespace UI
         }
     }
 }
-

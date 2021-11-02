@@ -64,7 +64,6 @@ public class AudioSystem : MonoBehaviour
     public bool IsPlaying(SoundKey soundKey)
     {
         Sound targetSound = FindSound(soundKey);
-        Debug.Log(targetSound.source.isPlaying);
         return targetSound.source.isPlaying;
     }
 

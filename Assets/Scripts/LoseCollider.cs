@@ -17,6 +17,10 @@ public class LoseCollider : MonoBehaviour
         _ballGun.BallPushed += onBallPushed;
     }
 
+    private void onDisable()
+    {
+        _ballGun.BallPushed -= onBallPushed;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Ball>(out Ball ball))
@@ -56,11 +60,5 @@ public class LoseCollider : MonoBehaviour
         _isLose = true;
         AppData.SetShouldBeRestarted(true);
         _losePopUp.SetVisible(true);
-    }
-
-    private void onDisable()
-    {
-        _ballGun.BallPushed -= onBallPushed;
-
     }
 }

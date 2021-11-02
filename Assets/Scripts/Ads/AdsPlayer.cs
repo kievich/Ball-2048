@@ -17,6 +17,11 @@ public class AdsPlayer : MonoBehaviour
         _noThanksButton.Click += onBallCreatedPopUpClose;
     }
 
+    private void OnDestroy()
+    {
+        _noThanksButton.Click -= onBallCreatedPopUpClose;
+    }
+
     private void onBallCreatedPopUpClose()
     {
         if (Random.Range(1, 100) <= _probabilityOfAdAfterNoThanks)
@@ -29,11 +34,6 @@ public class AdsPlayer : MonoBehaviour
         yield return new WaitForSeconds(_delayBeforeShowAdAfterNoThanks);
         _adsSystem.ShowInterstitialVideo();
 
-    }
-
-    private void OnDestroy()
-    {
-        _noThanksButton.Click -= onBallCreatedPopUpClose;
     }
 
 }

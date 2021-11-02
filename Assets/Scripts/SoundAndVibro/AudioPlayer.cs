@@ -25,6 +25,18 @@ public class AudioPlayer : MonoBehaviour
         UpdateLevelMusic();
     }
 
+    private void OnDestroy()
+    {
+        SettingSwitch.OptionChanged -= onOptionUpdated;
+
+        foreach (Button button in Resources.FindObjectsOfTypeAll(typeof(Button)))
+            button.onClick.RemoveListener(onButtonClick);
+
+        BallUnifier.BallUnited -= onBallUnited;
+        Booster.Performed -= onBoosterPerformed;
+        _lastBallPopUp.Showed -= onLastBallPopUpCreated;
+    }
+
     private void InitSettingOption()
     {
         _settingOption.Add(SettingOption.Music, AppData.GetSettingValue(SettingOption.Music));
@@ -86,13 +98,4 @@ public class AudioPlayer : MonoBehaviour
         if (_settingOption[SettingOption.Music] == false)
             _audioSystem.Stop(SoundKey.LevelMusic);
     }
-
-    private void OnDestroy()
-    {
-
-        BallUnifier.BallUnited -= onBallUnited;
-        _lastBallPopUp.Showed -= onLastBallPopUpCreated;
-    }
-
-
 }

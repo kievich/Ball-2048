@@ -16,6 +16,10 @@ public class BallInput : MonoBehaviour
         _ballGun = GetComponent<BallGun>();
         LevelPause.Pause += ResetTrajectory;
     }
+    private void OnDestroy()
+    {
+        LevelPause.Pause -= ResetTrajectory;
+    }
 
     private void Update()
     {
@@ -81,10 +85,5 @@ public class BallInput : MonoBehaviour
         _trajectory.ResetRotation();
         _trajectory.SetVisible(false);
         _isMoving = false;
-    }
-    private void OnDestroy()
-    {
-        LevelPause.Pause -= ResetTrajectory;
-
     }
 }

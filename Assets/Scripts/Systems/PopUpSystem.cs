@@ -18,9 +18,13 @@ public class PopUpSystem : MonoBehaviour
     {
         BallUnifier.BallUnited += onBallCreated;
         Doubler.Doubled += onBallCreated;
-
     }
 
+    private void OnDestroy()
+    {
+        BallUnifier.BallUnited -= onBallCreated;
+        Doubler.Doubled -= onBallCreated;
+    }
     private void onBallCreated(Ball ball)
     {
         _numberUnitesFromLastPopUp++;
@@ -52,11 +56,5 @@ public class PopUpSystem : MonoBehaviour
         _ballCreated.Show(_currentBallCreatedId);
         _numberUnitesFromLastPopUp = 0;
         _currentBallCreatedId = 0;
-    }
-
-    private void OnDestroy()
-    {
-        BallUnifier.BallUnited -= onBallCreated;
-        Doubler.Doubled -= onBallCreated;
     }
 }

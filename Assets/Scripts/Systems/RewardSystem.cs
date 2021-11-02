@@ -18,6 +18,11 @@ public class RewardSystem : MonoBehaviour
         _adsSystem.EarnedReward += GiveReward;
     }
 
+    private void OnDestroy()
+    {
+        _adsSystem.EarnedReward -= GiveReward;
+    }
+
     public void PlayReward(RewardType reward)
     {
         _currentReward = reward;
@@ -47,4 +52,5 @@ public class RewardSystem : MonoBehaviour
 
 
     }
+
 }

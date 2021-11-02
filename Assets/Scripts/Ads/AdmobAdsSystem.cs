@@ -42,6 +42,7 @@ public class AdmobAdsSystem : AdsSystem
     {
         _bannerView = new BannerView(_adsID.GetID(AdType.Banner), AdSize.IABBanner, AdPosition.Bottom);
     }
+
     private void InitRewardedMap()
     {
         _rewardedMap.Add(AdType.BombReward, new RewardedAd(_adsID.GetID(AdType.BombReward)));
@@ -83,7 +84,6 @@ public class AdmobAdsSystem : AdsSystem
     {
         if (_rewardedMap[rewardType].IsLoaded())
         {
-            Debug.Log("ShowRewardedVideo" + rewardType);
             _rewardedMap[rewardType].Show();
 
             _rewardedMap[rewardType].OnUserEarnedReward += OnUserEarnedReward;
@@ -108,5 +108,4 @@ public class AdmobAdsSystem : AdsSystem
         foreach (var item in _rewardedMap)
             item.Value.OnUserEarnedReward -= OnUserEarnedReward;
     }
-
 }
