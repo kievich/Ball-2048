@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bomb : Booster
 {
     [SerializeField] private float _radius;
-    [SerializeField] private float _autoExplosiontTime;
+    [SerializeField] private float _autoExplosionTime;
 
     override protected void onCollisionWithBall(Ball ball)
     {
@@ -14,7 +14,13 @@ public class Bomb : Booster
 
     private void Start()
     {
-        Invoke(nameof(Explosion), _autoExplosiontTime);
+        base.State.StateChanged += OnStateChanged;
+    }
+
+    private void OnStateChanged(BoosterStates ballState)
+    {
+        if (ballState == BoosterStates.Normal)
+            Invoke(nameof(Explosion), _autoExplosionTime);
     }
 
     private void Explosion()

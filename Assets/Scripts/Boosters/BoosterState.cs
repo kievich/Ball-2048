@@ -7,6 +7,8 @@ public class BoosterState : MonoBehaviour
     public BoosterStates Value { get; private set; } = BoosterStates.OnSpawnPoint;
     private Rigidbody _rigidbody;
 
+    public event System.Action<BoosterStates> StateChanged;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -25,6 +27,6 @@ public class BoosterState : MonoBehaviour
         }
 
         Value = state;
-
+        StateChanged?.Invoke(Value);
     }
 }

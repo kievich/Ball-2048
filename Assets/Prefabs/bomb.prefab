@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 1.5
-  _autoExplosiontTime: 3
+  _autoExplosionTime: 1.5
 --- !u!135 &4721723424910233491
 SphereCollider:
   m_ObjectHideFlags: 0
